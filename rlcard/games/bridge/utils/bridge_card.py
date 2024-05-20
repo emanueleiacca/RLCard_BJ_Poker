@@ -4,7 +4,7 @@
     Date created: 11/25/2021
 '''
 
-from rlcard.games.base import Card
+from games.base import Card
 
 
 class BridgeCard(Card):

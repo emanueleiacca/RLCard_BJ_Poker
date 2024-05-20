@@ -121,6 +121,14 @@ class DMCAgent:
     def set_device(self, device):
         self.device = device
 
+    def load_model(self, filepath):
+        # Load the entire model
+        self.net = torch.load(filepath, map_location=self.device)
+
+        # If you only need to load the state dictionary (common practice)
+        state_dict = torch.load(filepath, map_location=self.device)
+        self.net.load_state_dict(state_dict)
+
 class DMCModel:
     def __init__(
         self,
@@ -157,3 +165,7 @@ class DMCModel:
 
     def get_agents(self):
         return self.agents
+    
+    def predict(self, state):
+        # Example: Use the first agent to make a prediction
+        return self.agents[0].predict(state)

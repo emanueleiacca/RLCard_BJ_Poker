@@ -2,10 +2,8 @@ import json
 import os
 import numpy as np
 from collections import OrderedDict
-
-import rlcard
-from rlcard.envs import Env
-from rlcard.games.limitholdem import Game
+from envs import Env
+from games.limitholdem import Game
 
 DEFAULT_GAME_CONFIG = {
         'game_num_players': 2,
@@ -26,7 +24,7 @@ class LimitholdemEnv(Env):
         self.state_shape = [[72] for _ in range(self.num_players)]
         self.action_shape = [None for _ in range(self.num_players)]
 
-        with open(os.path.join(rlcard.__path__[0], 'games/limitholdem/card2index.json'), 'r') as file:
+        with open(os.path.join('rlcard/games/limitholdem/card2index.json'), 'r') as file:
             self.card2index = json.load(file)
 
     def _get_legal_actions(self):

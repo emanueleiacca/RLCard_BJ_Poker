@@ -2,12 +2,12 @@
 '''
 import os
 
-import rlcard
-from rlcard.agents import CFRAgent
-from rlcard.models.model import Model
 
+from agents import CFRAgent
+from models.model import Model
+from envs import make
 # Root path of pretrianed models
-ROOT_PATH = os.path.join(rlcard.__path__[0], 'models/pretrained')
+ROOT_PATH = os.path.join('rlcard/models/pretrained')
 
 class LeducHoldemCFRModel(Model):
     ''' A pretrained model on Leduc Holdem with CFR (chance sampling)
@@ -15,7 +15,7 @@ class LeducHoldemCFRModel(Model):
     def __init__(self):
         ''' Load pretrained model
         '''
-        env = rlcard.make('leduc-holdem')
+        env = make('leduc-holdem')
         self.agent = CFRAgent(env, model_path=os.path.join(ROOT_PATH, 'leduc_holdem_cfr'))
         self.agent.load()
     @property

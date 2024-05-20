@@ -21,7 +21,6 @@ import logging
 import os
 import time
 from typing import Dict
-
 import git
 
 

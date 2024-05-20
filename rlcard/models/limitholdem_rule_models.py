@@ -1,8 +1,8 @@
 ''' Limit Hold 'em rule model
 '''
-import rlcard
-from rlcard.models.model import Model
 
+from models.model import Model
+from envs import make
 class LimitholdemRuleAgentV1(object):
     ''' Limit Hold 'em Rule agent version 1
     '''
@@ -117,7 +117,7 @@ class LimitholdemRuleModelV1(Model):
     def __init__(self):
         ''' Load pretrained model
         '''
-        env = rlcard.make('limit-holdem')
+        env = make('limit-holdem')
 
         rule_agent = LimitholdemRuleAgentV1()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]

@@ -1,10 +1,10 @@
 import numpy as np
 from collections import OrderedDict
 
-from rlcard.envs import Env
-from rlcard.games.mahjong import Game
-from rlcard.games.mahjong import Card
-from rlcard.games.mahjong.utils import card_encoding_dict, encode_cards, pile2list
+from envs import Env
+from games.mahjong import Game
+from games.mahjong import Card
+from games.mahjong.utils import card_encoding_dict, encode_cards, pile2list
 
 class MahjongEnv(Env):
     ''' Mahjong Environment

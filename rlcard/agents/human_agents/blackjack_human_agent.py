@@ -1,4 +1,4 @@
-from rlcard.utils.utils import print_card
+from utils.utils import print_card
 
 
 class HumanAgent(object):

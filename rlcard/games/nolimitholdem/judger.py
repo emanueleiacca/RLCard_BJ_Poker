@@ -1,4 +1,4 @@
-from rlcard.games.limitholdem import Judger
+from games.limitholdem import Judger
 
 
 class NolimitholdemJudger(Judger):

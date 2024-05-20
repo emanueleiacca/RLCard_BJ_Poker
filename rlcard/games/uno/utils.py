@@ -3,15 +3,14 @@ import json
 import numpy as np
 from collections import OrderedDict
 
-import rlcard
 
-from rlcard.games.uno.card import UnoCard as Card
+from games.uno.card import UnoCard as Card
 
 # Read required docs
-ROOT_PATH = rlcard.__path__[0]
+ROOT_PATH = 'rlcard'
 
 # a map of abstract action to its index and a list of abstract action
-with open(os.path.join(ROOT_PATH, 'games/uno/jsondata/action_space.json'), 'r') as file:
+with open(os.path.join('games\uno\jsondata\action_space.json'), 'r') as file:
     ACTION_SPACE = json.load(file, object_pairs_hook=OrderedDict)
     ACTION_LIST = list(ACTION_SPACE.keys())
 

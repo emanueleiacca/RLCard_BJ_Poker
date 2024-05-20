@@ -1,1 +1,1 @@
-from rlcard.games.bridge.game import BridgeGame as Game
+from games.bridge.game import BridgeGame as Game

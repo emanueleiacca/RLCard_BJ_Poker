@@ -1,0 +1,12 @@
+{
+    "batch_size": 32,
+    "discount_factor": 0.99,
+    "epsilon_decay_steps": 20000,
+    "epsilon_end": 0.1,
+    "epsilon_start": 1.0,
+    "learning_rate": 9.064264760911147e-05,
+    "mlp_layers": "64,64",
+    "replay_memory_init_size": 100,
+    "replay_memory_size": 20000,
+    "update_target_estimator_every": 1000
+}

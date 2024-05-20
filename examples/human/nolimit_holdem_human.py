@@ -1,23 +1,32 @@
 ''' A toy example of playing against pretrianed AI on Leduc Hold'em
 '''
-from rlcard.agents import RandomAgent
+import sys
+sys.path.append('C:/Users/emanu/rlcard_copy/rlcard/') 
+from agents import RandomAgent
+import models
+from agents import NolimitholdemHumanAgent as HumanAgent
+from models.model import Model
+from utils import print_card
+from envs import make
+import torch
+from agents import DQNAgent
+# Load the DQN agent
 
-import rlcard
-from rlcard import models
-from rlcard.agents import NolimitholdemHumanAgent as HumanAgent
-from rlcard.utils import print_card
+file_path = 'experiments/nolimit_holdem_dqn_result/Save_Agent/DQN_checkpoint.pth'
+params_file_path= 'optuna_poker.json'
+model = DQNAgent.load_model(file_path,params_file_path)
 
 # Make environment
-env = rlcard.make('no-limit-holdem')
+env = make('no-limit-holdem')
 
 human_agent = HumanAgent(env.num_actions)
-human_agent2 = HumanAgent(env.num_actions)
 # random_agent = RandomAgent(num_actions=env.num_actions)
 
-env.set_agents([human_agent, human_agent2])
+# Set the DQN agent as one of the agents in the environment
+model = DQN(env.num_actions)
+env.set_agents([human_agent, model])
 
-
-while (True):
+while True:
     print(">> Start a new game")
 
     trajectories, payoffs = env.run(is_training=False)

@@ -3,9 +3,9 @@
 
 import numpy as np
 
-import rlcard
-from rlcard.games.doudizhu.utils import CARD_TYPE, INDEX
-from rlcard.models.model import Model
+from envs import make
+from games.doudizhu.utils import CARD_TYPE, INDEX
+from models.model import Model
 
 class DouDizhuRuleAgentV1(object):
     ''' Dou Dizhu Rule agent version 1
@@ -162,7 +162,7 @@ class DouDizhuRuleModelV1(Model):
     def __init__(self):
         ''' Load pretrained model
         '''
-        env = rlcard.make('doudizhu')
+        env = make('doudizhu')
 
         rule_agent = DouDizhuRuleAgentV1()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]

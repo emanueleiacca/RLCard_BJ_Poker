@@ -28,8 +28,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from rlcard.agents.dqn_agent import DQNAgent
-from rlcard.utils.utils import remove_illegal
+from agents.dqn_agent import DQNAgent
+from utils.utils import remove_illegal
 
 Transition = collections.namedtuple('Transition', 'info_state action_probs')
 

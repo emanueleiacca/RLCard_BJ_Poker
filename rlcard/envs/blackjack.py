@@ -1,8 +1,8 @@
 import numpy as np
 from collections import OrderedDict
 
-from rlcard.envs import Env
-from rlcard.games.blackjack import Game
+from envs import Env
+from games.blackjack import Game
 
 DEFAULT_GAME_CONFIG = {
         'game_num_players': 1,

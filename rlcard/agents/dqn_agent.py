@@ -24,7 +24,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
-
+import json
 import os
 import random
 import numpy as np
@@ -33,11 +33,11 @@ import torch.nn as nn
 from collections import namedtuple
 from copy import deepcopy
 
-from rlcard.utils.utils import remove_illegal
+from utils.utils import remove_illegal
 
 Transition = namedtuple('Transition', ['state', 'action', 'reward', 'next_state', 'done', 'legal_actions'])
 
-
+print(__file__)
 class DQNAgent(object):
     '''
     Approximate clone of rlcard.agents.dqn_agent.DQNAgent
@@ -119,7 +119,7 @@ class DQNAgent(object):
 
         # Create replay memory
         self.memory = Memory(replay_memory_size, batch_size)
-        
+
         # Checkpoint saving parameters
         self.save_path = save_path
         self.save_every = save_every
@@ -135,9 +135,14 @@ class DQNAgent(object):
         (state, action, reward, next_state, done) = tuple(ts)
         self.feed_memory(state['obs'], action, reward, next_state['obs'], list(next_state['legal_actions'].keys()), done)
         self.total_t += 1
+        #print(f"Total timesteps: {self.total_t}") #Debug
         tmp = self.total_t - self.replay_memory_init_size
+        #print(f"Tmp value: {tmp}") #Debug
         if tmp>=0 and tmp%self.train_every == 0:
-            self.train()
+            loss = self.train()
+            #print("Training occurred")
+            return loss
+        return None
 
     def step(self, state):
         ''' Predict the action for genrating training data but
@@ -235,7 +240,8 @@ class DQNAgent(object):
             # add another argument to the function call parameterized by self.train_t
             self.save_checkpoint(self.save_path)
             print("\nINFO - Saved model checkpoint.")
-
+            
+        return loss
 
     def feed_memory(self, state, action, reward, next_state, legal_actions, done):
         ''' Feed transition to memory
@@ -329,6 +335,56 @@ class DQNAgent(object):
         '''
         torch.save(self.checkpoint_attributes(), os.path.join(path, filename))
 
+    def save_model(self, file_path):
+        # Create the directory if it does not exist
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        
+        # Now save the model
+        torch.save({
+            'q_estimator_state_dict': self.q_estimator.qnet.state_dict(),
+            'target_estimator_state_dict': self.target_estimator.qnet.state_dict(),
+            # Consider adding any other components you need for a full save
+        }, file_path)
+
+    def load_model(model_file_path, params_file_path):
+        from envs import make
+        env = make('blackjack')
+        # Load the parameters from the JSON file
+        if not os.path.isfile(params_file_path):
+            raise FileNotFoundError(f"No parameter file found at {params_file_path}")
+        
+        with open(params_file_path, 'r') as f:
+            best_params = json.load(f)
+
+        # Create a new instance of the agent with the loaded parameters
+        agent = DQNAgent(
+            num_actions=env.num_actions,
+            state_shape=env.state_shape,
+            mlp_layers=[int(layer) for layer in best_params['mlp_layers'].split(',')], # Convert string to list of ints
+            replay_memory_size=best_params['replay_memory_size'],
+            replay_memory_init_size=best_params['replay_memory_init_size'],
+            update_target_estimator_every=best_params['update_target_estimator_every'],
+            discount_factor=best_params['discount_factor'],
+            epsilon_start=best_params['epsilon_start'],
+            epsilon_end=best_params['epsilon_end'],
+            epsilon_decay_steps=best_params['epsilon_decay_steps'],
+            batch_size=best_params['batch_size'],
+            learning_rate=best_params['learning_rate'],
+        )
+
+        
+        # Check if the checkpoint file exists
+        if not os.path.isfile(model_file_path):
+            raise FileNotFoundError(f"No model file found at {model_file_path}")
+
+        # Load the state dicts from the model file
+        checkpoint = torch.load(model_file_path)
+        agent.q_estimator.qnet.load_state_dict(checkpoint['q_estimator_state_dict'],strict=False)
+        agent.target_estimator.qnet.load_state_dict(checkpoint['target_estimator_state_dict'])
+        
+        return agent
 
 class Estimator(object):
     '''
@@ -423,6 +479,7 @@ class Estimator(object):
         batch_loss = batch_loss.item()
 
         self.qnet.eval()
+        print('\rINFO - Q-Loss: {}'.format(batch_loss), end='')
 
         return batch_loss
     
@@ -498,13 +555,9 @@ class Memory(object):
     '''
 
     def __init__(self, memory_size, batch_size):
-        ''' Initialize
-        Args:
-            memory_size (int): the size of the memroy buffer
-        '''
         self.memory_size = memory_size
         self.batch_size = batch_size
-        self.memory = []
+        self.memory = []  # Initialize an empty list or other appropriate data structure
 
     def save(self, state, action, reward, next_state, legal_actions, done):
         ''' Save transition into memory
@@ -545,7 +598,12 @@ class Memory(object):
             'batch_size': self.batch_size,
             'memory': self.memory
         }
-            
+    
+    def __len__(self):
+        ''' Returns the current size of the memory.
+        '''
+        return len(self.memory)
+           
     @classmethod
     def from_checkpoint(cls, checkpoint):
         ''' 

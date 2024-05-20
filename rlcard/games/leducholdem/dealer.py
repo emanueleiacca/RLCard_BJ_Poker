@@ -1,5 +1,5 @@
-from rlcard.games.base import Card
-from rlcard.games.limitholdem import Dealer
+from games.base import Card
+from games.limitholdem import Dealer
 
 class LeducholdemDealer(Dealer):
 

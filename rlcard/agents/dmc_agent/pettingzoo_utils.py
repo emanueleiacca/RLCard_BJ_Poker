@@ -4,7 +4,7 @@ import numpy as np
 import torch
 
 from .utils import log
-from rlcard.utils import run_game_pettingzoo
+from utils import run_game_pettingzoo
 
 def create_buffers_pettingzoo(
     T,

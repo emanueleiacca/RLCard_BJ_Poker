@@ -16,14 +16,14 @@ from typing import List
 
 import numpy as np
 
-import rlcard
+from envs import make
 
-from rlcard.models.model import Model
+from  models.model import Model
 
-from rlcard.games.gin_rummy.utils.action_event import *
+from games.gin_rummy.utils.action_event import *
 
-import rlcard.games.gin_rummy.utils.melding as melding
-import rlcard.games.gin_rummy.utils.utils as utils
+import games.gin_rummy.utils.melding as melding
+import games.gin_rummy.utils.utils as utils
 
 
 class GinRummyNoviceRuleAgent(object):
@@ -121,7 +121,7 @@ class GinRummyNoviceRuleModel(Model):
         ''' Load pre-trained model
         '''
         super().__init__()
-        env = rlcard.make('gin-rummy')
+        env = make('gin-rummy')
         rule_agent = GinRummyNoviceRuleAgent()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]
 

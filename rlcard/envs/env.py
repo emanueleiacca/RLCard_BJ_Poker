@@ -1,4 +1,4 @@
-from rlcard.utils import *
+from utils import *
 
 class Env(object):
     '''

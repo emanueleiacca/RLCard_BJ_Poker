@@ -1,7 +1,7 @@
-from rlcard.agents.nfsp_agent import NFSPAgent
-from rlcard.agents.dqn_agent import DQNAgent
-from rlcard.agents.random_agent import RandomAgent
-from rlcard.utils.pettingzoo_utils import wrap_state
+from agents.nfsp_agent import NFSPAgent
+from agents.dqn_agent import DQNAgent
+from agents.random_agent import RandomAgent
+from utils.pettingzoo_utils import wrap_state
 
 
 class NFSPAgentPettingZoo(NFSPAgent):

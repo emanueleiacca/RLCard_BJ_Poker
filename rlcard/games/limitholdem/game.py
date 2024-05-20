@@ -1,10 +1,10 @@
 from copy import deepcopy, copy
 import numpy as np
 
-from rlcard.games.limitholdem import Dealer
-from rlcard.games.limitholdem import Player, PlayerStatus
-from rlcard.games.limitholdem import Judger
-from rlcard.games.limitholdem import Round
+from games.limitholdem import Dealer
+from games.limitholdem import Player, PlayerStatus
+from games.limitholdem import Judger
+from games.limitholdem import Round
 
 
 class LimitHoldemGame:

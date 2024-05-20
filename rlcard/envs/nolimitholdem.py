@@ -3,10 +3,9 @@ import os
 import numpy as np
 from collections import OrderedDict
 
-import rlcard
-from rlcard.envs import Env
-from rlcard.games.nolimitholdem import Game
-from rlcard.games.nolimitholdem.round import Action
+from envs import Env
+from games.nolimitholdem import Game
+from games.nolimitholdem.round import Action
 
 DEFAULT_GAME_CONFIG = {
         'game_num_players': 2,
@@ -31,7 +30,7 @@ class NolimitholdemEnv(Env):
         # for raise_amount in range(1, self.game.init_chips+1):
         #     self.actions.append(raise_amount)
 
-        with open(os.path.join(rlcard.__path__[0], 'games/limitholdem/card2index.json'), 'r') as file:
+        with open(os.path.join('rlcard/games/limitholdem/card2index.json'), 'r') as file:
             self.card2index = json.load(file)
 
     def _get_legal_actions(self):

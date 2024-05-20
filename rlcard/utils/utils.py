@@ -1,6 +1,6 @@
 import numpy as np
 
-from rlcard.games.base import Card
+from games.base import Card
 
 def set_seed(seed):
     if seed is not None:
@@ -209,6 +209,7 @@ def tournament(env, num):
     '''
     payoffs = [0 for _ in range(env.num_players)]
     counter = 0
+
     while counter < num:
         _, _payoffs = env.run(is_training=False)
         if isinstance(_payoffs, list):
@@ -249,3 +250,48 @@ def plot_curve(csv_path, save_path, algorithm):
 
         fig.savefig(save_path)
 
+def win_rate_function(env, num_games):
+    ''' Calcola il tasso di vincita dell'agente in un ambiente di gioco per un numero specificato di partite.
+
+    Args:
+        env (Env class): L'ambiente di gioco da valutare.
+        num_games (int): Il numero di partite da giocare.
+
+    Returns:
+        Il tasso di vincita dell'agente, calcolato come percentuale di partite vinte su num_games.
+    '''
+    num_wins = 0
+
+    for _ in range(num_games):
+        _, payoffs = env.run(is_training=False)
+
+        # Controllo se il giocatore ha vinto la partita
+        if payoffs[0] > 0:
+            num_wins += 1
+
+    win_rate = num_wins / num_games
+    return win_rate
+
+def calculate_metrics_from_trajectories(trajectories):
+    total_score = 0
+    num_busts = 0
+    total_games = 0
+
+    for episode_trajectories in trajectories:
+        for game_data in episode_trajectories:
+            if isinstance(game_data, list):
+                final_obs = game_data[-2]['obs']  # Get the final observation before the game ends
+                player_score = final_obs[0]
+
+                if player_score <= 21:
+                    total_score += player_score  # Only add to total if score is 21 or less
+
+                if player_score > 21:
+                    num_busts += 1  # Count busts
+
+                total_games += 1  # Count every game to calculate the average properly
+
+
+    average_score = total_score / total_games if total_games else 0
+    bust_rate = num_busts / total_games if total_games else 0
+    return average_score, bust_rate

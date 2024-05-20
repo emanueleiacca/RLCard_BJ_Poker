@@ -8,7 +8,7 @@ from typing import List, Iterable
 
 import numpy as np
 
-from rlcard.games.base import Card
+from games.base import Card
 
 from .gin_rummy_error import GinRummyProgramError
 

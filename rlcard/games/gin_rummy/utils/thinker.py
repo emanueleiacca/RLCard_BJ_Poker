@@ -6,7 +6,7 @@
 
 from typing import List
 
-from rlcard.games.base import Card
+from games.base import Card
 
 from . import melding
 from . import utils

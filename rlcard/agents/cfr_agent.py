@@ -4,7 +4,7 @@ import collections
 import os
 import pickle
 
-from rlcard.utils.utils import *
+from utils.utils import *
 
 class CFRAgent():
     ''' Implement CFR (chance sampling) algorithm
@@ -218,4 +218,5 @@ class CFRAgent():
         iteration_file = open(os.path.join(self.model_path, 'iteration.pkl'),'rb')
         self.iteration = pickle.load(iteration_file)
         iteration_file.close()
+
 

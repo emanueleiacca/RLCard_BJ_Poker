@@ -3,8 +3,8 @@
 
 import numpy as np
 
-import rlcard
-from rlcard.models.model import Model
+from envs import make 
+from models.model import Model
 
 class UNORuleAgentV1(object):
     ''' UNO Rule agent version 1
@@ -94,7 +94,7 @@ class UNORuleModelV1(Model):
     def __init__(self):
         ''' Load pretrained model
         '''
-        env = rlcard.make('uno')
+        env = make('uno')
 
         rule_agent = UNORuleAgentV1()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]

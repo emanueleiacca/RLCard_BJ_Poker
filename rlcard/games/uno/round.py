@@ -1,5 +1,5 @@
-from rlcard.games.uno.card import UnoCard
-from rlcard.games.uno.utils import cards2list, WILD, WILD_DRAW_4
+from games.uno.card import UnoCard
+from games.uno.utils import cards2list, WILD, WILD_DRAW_4
 
 
 class UnoRound:

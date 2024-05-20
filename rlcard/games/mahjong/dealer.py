@@ -1,4 +1,4 @@
-from rlcard.games.mahjong.utils import init_deck
+from games.mahjong.utils import init_deck
 
 
 class MahjongDealer:

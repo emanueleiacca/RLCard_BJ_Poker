@@ -6,8 +6,8 @@ import collections
 from itertools import combinations
 from bisect import bisect_left
 
-from rlcard.games.doudizhu.utils import CARD_RANK_STR, CARD_RANK_STR_INDEX
-from rlcard.games.doudizhu.utils import cards2str, contains_cards
+from games.doudizhu.utils import CARD_RANK_STR, CARD_RANK_STR_INDEX
+from games.doudizhu.utils import cards2str, contains_cards
 
 
 

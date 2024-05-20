@@ -2,7 +2,7 @@
 ''' Implement Leduc Hold'em Round class
 '''
 
-from rlcard.games.limitholdem import Round
+from games.limitholdem import Round
 
 class LeducholdemRound(Round):
     ''' Round can call other Classes' functions to keep the game running

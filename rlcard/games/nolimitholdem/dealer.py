@@ -1,4 +1,4 @@
-from rlcard.games.limitholdem import Dealer
+from games.limitholdem import Dealer
 
 
 class NolimitholdemDealer(Dealer):

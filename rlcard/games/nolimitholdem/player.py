@@ -1,4 +1,4 @@
-from rlcard.games.limitholdem import Player
+from games.limitholdem import Player
 
 
 class NolimitholdemPlayer(Player):

@@ -15,7 +15,7 @@ from .utils.scorers import GinRummyScorer
 from .utils import melding
 from .utils.gin_rummy_error import GinRummyProgramError
 
-from rlcard.games.gin_rummy.utils import utils
+from games.gin_rummy.utils import utils
 
 
 class GinRummyJudge:

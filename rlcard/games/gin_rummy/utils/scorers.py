@@ -15,8 +15,8 @@ from ..player import GinRummyPlayer
 from .move import ScoreNorthMove, ScoreSouthMove
 from .gin_rummy_error import GinRummyProgramError
 
-from rlcard.games.gin_rummy.utils import melding
-from rlcard.games.gin_rummy.utils import utils
+from games.gin_rummy.utils import melding
+from games.gin_rummy.utils import utils
 
 
 class GinRummyScorer:

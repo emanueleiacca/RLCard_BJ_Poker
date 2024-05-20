@@ -6,10 +6,10 @@ from collections import OrderedDict
 import threading
 import collections
 
-import rlcard
+
 
 # Read required docs
-ROOT_PATH = rlcard.__path__[0]
+ROOT_PATH = 'rlcard'
 
 if not os.path.isfile(os.path.join(ROOT_PATH, 'games/doudizhu/jsondata/action_space.txt')) \
         or not os.path.isfile(os.path.join(ROOT_PATH, 'games/doudizhu/jsondata/card_type.json')) \

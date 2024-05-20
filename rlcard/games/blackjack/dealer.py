@@ -1,4 +1,4 @@
-from rlcard.utils import init_standard_deck
+from utils import init_standard_deck
 import numpy as np
 
 class BlackjackDealer:

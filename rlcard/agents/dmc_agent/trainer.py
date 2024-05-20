@@ -43,6 +43,12 @@ def compute_loss(logits, targets):
     loss = ((logits - targets)**2).mean()
     return loss
 
+import logging
+import torch
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 def learn(
     position,
     actor_models,
@@ -65,10 +71,15 @@ def learn(
     with lock:
         values = agent.forward(state, action)
         loss = compute_loss(values, target)
+        mean_episode_return = torch.mean(torch.stack([_r for _r in mean_episode_return_buf[position]])).item()
         stats = {
-            'mean_episode_return_'+str(position): torch.mean(torch.stack([_r for _r in mean_episode_return_buf[position]])).item(),
+            'mean_episode_return_'+str(position): mean_episode_return,
             'loss_'+str(position): loss.item(),
         }
+
+        # Log the calculated mean episode return and loss
+        logging.info(f"Mean Episode Return at Position {position}: {mean_episode_return}")
+        logging.info(f"Loss at Position {position}: {loss.item()}")
 
         optimizer.zero_grad()
         loss.backward()
@@ -77,7 +88,12 @@ def learn(
 
         for actor_model in actor_models.values():
             actor_model.get_agent(position).load_state_dict(agent.state_dict())
+
+        # Optionally log any other significant event or error
+        logging.info(f"Model updated and parameters synchronized for position {position}")
+
         return stats
+
 
 
 class DMCTrainer:    

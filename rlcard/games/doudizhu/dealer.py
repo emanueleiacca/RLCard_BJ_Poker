@@ -3,8 +3,8 @@
 '''
 import functools
 
-from rlcard.utils import init_54_deck
-from rlcard.games.doudizhu.utils import cards2str, doudizhu_sort_card
+from utils import init_54_deck
+from games.doudizhu.utils import cards2str, doudizhu_sort_card
 
 class DoudizhuDealer:
     ''' Dealer will shuffle, deal cards, and determine players' roles

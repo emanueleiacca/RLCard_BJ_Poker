@@ -1,7 +1,7 @@
 from collections import Counter, OrderedDict
 import numpy as np
 
-from rlcard.envs import Env
+from envs import Env
 
 
 class DoudizhuEnv(Env):

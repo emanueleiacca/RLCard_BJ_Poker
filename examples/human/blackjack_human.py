@@ -1,21 +1,22 @@
 ''' A toy example of self playing for Blackjack
 '''
-
-import rlcard
-from rlcard.agents import RandomAgent as RandomAgent
-from rlcard.agents import BlackjackHumanAgent as HumanAgent
-from rlcard.utils.utils import print_card
+import sys
+sys.path.append('C:/Users/emanu/rlcard_copy/rlcard/') 
+from envs import make
+from  agents import RandomAgent as RandomAgent
+from agents import BlackjackHumanAgent as HumanAgent
+from utils.utils import print_card
 
 # Make environment
 num_players = 2
-env = rlcard.make(
+env = make(
     'blackjack',
     config={
         'game_num_players': num_players,
     },
 )
 human_agent = HumanAgent(env.num_actions)
-random_agent = RandomAgent(env.num_actions)
+random_agent = HumanAgent(env.num_actions)
 env.set_agents([
     human_agent,
     random_agent,

@@ -6,7 +6,7 @@
 import numpy as np
 from collections import OrderedDict
 
-from rlcard.envs import Env
+from envs import Env
 
 class GinRummyEnv(Env):
     ''' GinRummy Environment

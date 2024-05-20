@@ -1,11 +1,19 @@
+import torch.nn as nn
 
-class Model(object):
+class Model(nn.Module):
     ''' The base model class
     '''
 
     def __init__(self):
-        ''' Load the model here
+        ''' Initialize the model
         '''
+        super(Model, self).__init__()
+        # Define your model architecture here
+
+    def forward(self, x):
+        ''' Define the forward pass of the model
+        '''
+        # Implement the forward pass logic here
         pass
 
     @property
