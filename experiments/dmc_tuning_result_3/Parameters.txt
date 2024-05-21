@@ -1,0 +1,14 @@
+        xpid="blackjack",
+        savedir="experiments/dmc_tuning_result_3",
+        save_interval=1,
+        total_frames=2000000,
+        exp_epsilon=0.025, #Lowering even more
+        batch_size=35, 
+        unroll_length=30, #Lowering even more
+        num_buffers=50,
+        num_threads=4, 
+        max_grad_norm=25, #Lowering even more
+        learning_rate=9.064264760911147e-04
+        alpha=0.95, #We make the optimizer more responsive to recent gradients
+        momentum=0, #It reached convergence too soon, we try to remove it
+        epsilon=1e-8 

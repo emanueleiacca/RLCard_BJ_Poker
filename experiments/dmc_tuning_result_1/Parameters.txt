@@ -1,0 +1,14 @@
+xpid="blackjack",
+savedir="experiments/dmc_tuning_result_1",
+save_interval=1,
+total_frames=2000000,
+exp_epsilon=0.1, #start with higher epsilon
+batch_size=35, #if it works good on DQN, it should do the same here
+unroll_length=100, #depends by long-term dependencies in the task, for BJ env this is good
+num_buffers=50,
+num_threads=4, 
+max_grad_norm=40, # standard value to prevent exploding gradients
+learning_rate=9.064264760911147e-04, #if it works good on DQN, it should do the same here
+alpha=0.99, 
+momentum=0.1, #try adding a small momentum to reach convergence
+epsilon=0.00001 #epsilon optimizer to prevent division by 0

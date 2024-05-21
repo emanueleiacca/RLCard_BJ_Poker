@@ -1,0 +1,18 @@
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Updated log fields: ['_tick', '_time', 'frames', 'mean_episode_return_0', 'loss_0']
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Path to log file already exists. New data will be appended.
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Path to log file already exists. New data will be appended.
+Saving logs data to experiments/dmc_result_optuna\blackjack_optuna/logs.csv
+Saving logs' fields to experiments/dmc_result_optuna\blackjack_optuna/fields.csv
+Path to log file already exists. New data will be appended.

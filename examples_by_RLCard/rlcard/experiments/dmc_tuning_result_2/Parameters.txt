@@ -1,0 +1,16 @@
+       xpid="blackjack",
+        savedir="experiments/dmc_tuning_result_2",
+        save_interval=1,
+        total_frames=2000000,
+        exp_epsilon=0.05, #lowering epsilon since we need more exploration
+        batch_size=35, #if it works good on DQN, it should do the same here
+        unroll_length=50, #Since the Blackjack environment doesn't have very long-term dependencies, we try to lower it
+        num_buffers=50,
+        num_threads=4, 
+        max_grad_norm=35, #Since we have spikes in the loss,we try to control more the gradient updates
+        learning_rate=9.064264760911147e-04, #if it works good on DQN, it should do the same here
+        alpha=0.99, 
+        momentum=0.1, 
+        epsilon=1e-8 #Suggested value in RMSprop 
+
+
