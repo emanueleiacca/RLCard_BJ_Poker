@@ -1,7 +1,7 @@
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
-sys.path.append('C:/Users/emanu/rlcard_copy - Copia/rlcard/')
+sys.path.append('C:/Users/emanu/THESIS_BJ_POKER_REINFORCEMENTLEARNING/')
 from utils.utils import reorganize
 from envs import make
 from agents import DQNAgent  
@@ -16,7 +16,7 @@ env = make(
 )
 
 # Load the trained DQN agent
-model_path = 'experiments/dmc_tuning_result_3/blackjack/0_2003400.pth'
+model_path = 'experiments/dmc_result_final/blackjack/0_10003350.pth'
 agent = torch.load(model_path)
 print(agent)
 # Set up agents

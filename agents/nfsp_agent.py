@@ -163,6 +163,8 @@ class NFSPAgent(object):
         if self.total_t>0 and len(self._reservoir_buffer) >= self._min_buffer_size_to_learn and self.total_t%self._train_every == 0:
             sl_loss  = self.train_sl()
             print('\rINFO - Step {}, sl-loss: {}'.format(self.total_t, sl_loss), end='')
+            return sl_loss
+        return None
 
     def step(self, state):
         ''' Returns the action to be taken.
@@ -175,6 +177,7 @@ class NFSPAgent(object):
         '''
         obs = state['obs']
         legal_actions = list(state['legal_actions'].keys())
+        #print(f"Step method - obs shape: {obs.shape}")
         if self._mode == 'best_response':
             action = self._rl_agent.step(state)
             one_hot = np.zeros(self._num_actions)
@@ -231,6 +234,7 @@ class NFSPAgent(object):
         '''
         info_state = np.expand_dims(info_state, axis=0)
         info_state = torch.from_numpy(info_state).float().to(self.device)
+        #print(f"_act method - info_state shape: {info_state.shape}")
 
         with torch.no_grad():
             log_action_probs = self.policy_network(info_state).cpu().numpy()

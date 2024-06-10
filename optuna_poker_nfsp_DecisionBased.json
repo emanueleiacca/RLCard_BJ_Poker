@@ -1,0 +1,16 @@
+{
+    "anticipatory_param": 0.15000000000000002,
+    "batch_size": 128,
+    "min_buffer_size_to_learn": 100,
+    "mlp_layers": "512,512",
+    "q_discount_factor": 0.96,
+    "q_epsilon_decay_steps": 400000,
+    "q_epsilon_end": 0.006,
+    "q_epsilon_start": 0.04,
+    "q_replay_memory_init_size": 50,
+    "q_replay_memory_size": 15000,
+    "q_update_target_estimator_every": 1000,
+    "reservoir_buffer_capacity": 15000,
+    "rl_learning_rate": 0.008139007868121348,
+    "sl_learning_rate": 0.00348827680589518
+}

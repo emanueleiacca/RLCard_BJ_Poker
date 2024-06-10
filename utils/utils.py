@@ -295,3 +295,36 @@ def calculate_metrics_from_trajectories(trajectories):
     average_score = total_score / total_games if total_games else 0
     bust_rate = num_busts / total_games if total_games else 0
     return average_score, bust_rate
+import pandas as pd
+import matplotlib.pyplot as plt
+def plot_curve_poker(csv_path, save_path, title):
+    """
+    Plot the average reward per episode from the CSV file and save the plot as an image.
+
+    Args:
+        csv_path (str): Path to the CSV file containing the performance data.
+        save_path (str): Path to save the generated plot image.
+        title (str): Title of the plot.
+    """
+    # Read the CSV file
+    df = pd.read_csv(csv_path)
+
+    # Debug print to check CSV structure
+    print("CSV Columns:", df.columns)
+    print(df.head())
+
+    # Rename the columns to match the expected names
+    df.columns = ['episode', 'avg_reward']
+
+    # Plot the data
+    plt.figure(figsize=(10, 6))
+    plt.plot(df['episode'], df['avg_reward'], label='Average Reward', marker='o', linestyle='-', markersize=4)
+    plt.xlabel('Episode')
+    plt.ylabel('Average Reward')
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(save_path)
+    plt.close()
+
+    print(f"Plot saved to {save_path}")

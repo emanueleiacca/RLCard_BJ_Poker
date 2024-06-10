@@ -441,7 +441,10 @@ class Estimator(object):
         '''
         with torch.no_grad():
             s = torch.from_numpy(s).float().to(self.device)
+            #print(f"predict_nograd method - input s shape: {s.shape}")
             q_as = self.qnet(s).cpu().numpy()
+            #print(f"predict_nograd method - q_as shape: {q_as.shape}")
+
         return q_as
 
     def update(self, s, a, y):
@@ -531,6 +534,7 @@ class EstimatorNetwork(nn.Module):
         self.num_actions = num_actions
         self.state_shape = state_shape
         self.mlp_layers = mlp_layers
+        #print(f"Initializing EstimatorNetwork with state_shape: {self.state_shape} and mlp_layers: {self.mlp_layers}")
 
         # build the Q network
         layer_dims = [np.prod(self.state_shape)] + self.mlp_layers
@@ -548,6 +552,8 @@ class EstimatorNetwork(nn.Module):
         Args:
             s  (Tensor): (batch, state_shape)
         '''
+        #print(f"EstimatorNetwork forward - input shape: {s.shape}")
+
         return self.fc_layers(s)
 
 class Memory(object):

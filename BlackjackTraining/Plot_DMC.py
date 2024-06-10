@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('C:/Users/emanu/THESIS_BJ_POKER_REINFORCEMENTLEARNING/')
 
 def plot_function(csv_file):
     data = pd.read_csv(csv_file)
@@ -46,5 +48,5 @@ def plot_function(csv_file):
 
 
 
-plot_function('experiments/dmc_tuning_result_00/blackjack/logs.csv')
+plot_function('experiments/dmc_result_final/blackjack/logs.csv')
 
