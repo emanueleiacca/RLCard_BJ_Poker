@@ -1,0 +1,7 @@
+# Ignora file temporanei ed editor
+*.swp
+*.tmp
+*.log
+
+# Ignora tutti i file .pth
+*.pth
